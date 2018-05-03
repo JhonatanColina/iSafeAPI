@@ -8,5 +8,5 @@ import br.com.isafe.model.Sensor;
 @Repository
 public interface SensorRepository extends MongoRepository<Sensor, String>
 {
-	
+	Sensor findByCodSensor(String codSensor);
 }

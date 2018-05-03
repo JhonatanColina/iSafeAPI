@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.isafe.model.Sensor;
+import br.com.isafe.model.Usuario;
 import br.com.isafe.repository.SensorRepository;
 
 
 
 @RestController
 @CrossOrigin
-@RequestMapping("/sensor")
+@RequestMapping(value = "/sensor")
 public class SensorController {
 
 	@Autowired
@@ -36,5 +37,11 @@ public class SensorController {
 	{
 		List<Sensor> lista = sensorRepository.findAll();
 		return lista;
+	}
+
+	@GetMapping(value = "/id/{id}", produces = "application/json; charset=UTF-8")
+	public Sensor buscaSensorId(@PathVariable(value = "id") String id)
+	{
+		return sensorRepository.findByCodSensor(id);
 	}
 }
