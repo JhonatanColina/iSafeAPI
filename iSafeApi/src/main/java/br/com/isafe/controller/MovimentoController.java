@@ -25,7 +25,7 @@ public class MovimentoController {
 	private MovimentoRepository movimentoRepository;
 	
 	@PostMapping("/enviaMovimento/{mac}")
-	public void receber(@PathVariable(value = "mac") String macAddress) 
+	public void recebeMovimentacao(@PathVariable(value = "mac") String macAddress) 
 	{
 		Movimento m = new Movimento();
 		LocalDateTime  hoje = LocalDateTime.now();
@@ -36,15 +36,28 @@ public class MovimentoController {
 		movimentoRepository.save(m);
 	}
 	
-	@GetMapping("/data")
+	/** 
+	 * Retorna uma lista de movimentos do sensor.<br>
+	 * @param macAddress macAddress do sensor
+	 * @return Lista de movimentos
+	 */
+  @GetMapping("/historico/{macAddress}")
+	public List<Movimento> HistoricoSensor(@PathVariable(value = "macAddress") String macAddress)
+	{
+  	return movimentoRepository.findByMacAddress(macAddress);
+	}
+	
+	@GetMapping("/ultimaMovimentacao")
 	public Movimento data()
 	{
 		Movimento resposta = null;
 
 		List<Movimento> lista = movimentoRepository.findAll();
 		long primeiro = 0;
-		for(Movimento item : lista){
-			if(primeiro < Long.parseLong(item.getData())){
+		for(Movimento item : lista)
+		{
+			if(primeiro < Long.parseLong(item.getData()))
+			{
 				resposta = item;
 			}
 		}
