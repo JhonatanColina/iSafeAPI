@@ -41,10 +41,10 @@ public class UsuarioController
 	 * Ver mais em {@link #buscarTodosUsuarios()}.
 	 * @return Lista de Usuarios
 	 */
-  @GetMapping("/sensores")
-  List<Sensor> buscarPorSensor()
+  @GetMapping("/sensores/{codSensor}")
+  List<Usuario> buscarUsuarioPorSensor(@PathVariable(value = "codSensor") String codSensor)
   {
-  	return usuarioRepository.findBysensores();
+  	return usuarioRepository.findBySensores(codSensor);
   }
   
   
