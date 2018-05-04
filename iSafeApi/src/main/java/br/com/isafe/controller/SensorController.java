@@ -44,4 +44,14 @@ public class SensorController {
 	{
 		return sensorRepository.findByCodSensor(id);
 	}
+	
+	/** 
+	 * Busca todas os sensores persistidos na base de dados pelo local<br>
+	 * @return Lista de Sensores
+	 */
+  @GetMapping("/listaSensor/{localSensor}")
+  List<Sensor> buscarSensorPeloLocal(@PathVariable(value = "localSensor") String localSensor)
+  {
+  	return sensorRepository.findByLocalSensorContaining(localSensor);
+  }
 }
