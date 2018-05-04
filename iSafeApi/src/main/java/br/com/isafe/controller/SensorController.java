@@ -54,4 +54,14 @@ public class SensorController {
   {
   	return sensorRepository.findByLocalSensorContaining(localSensor);
   }
+  
+  /** 
+	 * Remove um sensor na base de dados.<br>
+	 * @param id ID do sensor
+	 */
+	@DeleteMapping("/apagar/{id}")
+	public void apagarSensor(@PathVariable(value = "id") String id)
+	{
+		sensorRepository.delete(id);
+	}
 }
