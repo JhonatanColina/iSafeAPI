@@ -12,4 +12,5 @@ public interface SensorRepository extends MongoRepository<Sensor, String>
 {
 	Sensor findByCodSensor(String codSensor);
 	List<Sensor> findByLocalSensorContaining(String localSensor);
+	long count();
 }

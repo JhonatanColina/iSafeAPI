@@ -64,4 +64,12 @@ public class SensorController {
 	{
 		sensorRepository.delete(id);
 	}
+	/** 
+	 * retorna quatidade de sensores cadastrados<br>
+	 */
+	@GetMapping("/count")
+	public long contagemSensor()
+	{
+		return sensorRepository.count();
+	}
 }
